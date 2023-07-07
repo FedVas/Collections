@@ -1,11 +1,13 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Game {
-    private List<Player> players = new ArrayList<>(); //создаем коллекцию
+    private HashMap<Player, String> players = new HashMap<>(); //создаем коллекцию
+    private String rang = null;
 
     public void register(Player player) {//метод регистрации (добавления в коллекцию)
-        players.add(player);            // в коллекцию players добавляем  вводимого player
+        players.put(player, rang);            // в коллекцию players добавляем  вводимого player
     }
 
 //    public Player findByName(String playerName) { //метод поиска по имени
@@ -25,7 +27,7 @@ public class Game {
         Player player2 = null;
 
 
-        for (Player player : players) {
+        for (Player player : players.keySet()) {
             if (player.getName().equals(playerName1)) {
                 player1 = player;
             }
