@@ -3,11 +3,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Game {
-    private HashMap<Player, String> players = new HashMap<>(); //создаем коллекцию
-    private String rang = null;
+    private HashMap<String, Integer> players = new HashMap<>(); //создаем коллекцию
+
 
     public void register(Player player) {//метод регистрации (добавления в коллекцию)
-        players.put(player, rang);            // в коллекцию players добавляем  вводимого player
+        players.put(player.name, player.strength);            // в коллекцию players добавляем  вводимого player
     }
 
 //    public Player findByName(String playerName) { //метод поиска по имени
@@ -22,34 +22,33 @@ public class Game {
 //    }
 
 
-    public int round(String playerName1, String playerName2) {
-        Player player1 = null;
-        Player player2 = null;
+    public int round(String playerName1, String playerName2) {  
+        int player1 = 3;
+        int player2 = 3;
 
-
-        for (Player player : players.keySet()) {
-            if (player.getName().equals(playerName1)) {
-                player1 = player;
+        for (String key : players.keySet()) {
+            if (key.equals(playerName1)) {  //если имя существует то player1 = сила существующего игрока
+                player1 = players.get(playerName1);
             }
-            if (player.getName().equals(playerName2)) {
-                player2 = player;
+            if (key.equals(playerName2)) {
+                player2 = players.get(playerName2);
             }
         }
-        if (player1 == null) {
+
+        if (player1 == 3) {
             throw new NotRegisteredException(playerName1);
         }
-        if (player2 == null) {
+        if (player2 == 3) {
             throw new NotRegisteredException(playerName2);
         }
 
-        if (player1.getStrength() > player2.getStrength()) {
+        if (player1 > player2) {
             return 1;
         }
-        if (player1.getStrength() < player2.getStrength()) {
+        if (player1 < player2) {
             return 2;
         }
         return 0;
-
 
     }
 }
