@@ -72,4 +72,21 @@ public class GameTest {
                 () -> game.round("Oleg", "Tolya")
         );
     }
+
+    @Test
+    public void twoPlayersNotFound() {
+
+        Assertions.assertThrows(NotRegisteredException.class,
+                () -> game.round("Oleg", "Tolya"));
+    }
+
+    @Test
+    public void coatingGetStrength() {
+        Assertions.assertEquals(31, player1.getStrength());
+    }
+
+    @Test
+    public void coatingGetName() {
+        Assertions.assertEquals("Sasha", player3.getName());
+    }
 }
